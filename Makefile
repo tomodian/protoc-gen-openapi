@@ -14,7 +14,9 @@ install-deps: install-protoc
 
 build: install-deps
 	mkdir -p $(BINDIR)
-	go build -o $(BINDIR)/protoc-gen-openapi
+	GOOS=linux GOARCH=amd64 go build -o $(BINDIR)/protoc-gen-openapi.linux-amd64
+	GOOS=linux GOARCH=arm64 go build -o $(BINDIR)/protoc-gen-openapi.linux-arm64
+	rm -f $(BINDIR)/protoc-gen-openapi.-
 
 run:
 	rm -fr $(OUTPUTDIR)
